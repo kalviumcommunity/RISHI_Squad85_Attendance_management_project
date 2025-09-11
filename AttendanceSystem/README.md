@@ -1,21 +1,43 @@
-# School Attendance System
-This is a 10-part code-along project to build a console-based school attendance system in Java.
+# School Management System
 
-## Session 2: Core Domain Modelling
-- Defined `Student` class with `studentId`, `name`, `setDetails()`, and `displayDetails()` method.
-- Defined `Course` class with `courseId`, `courseName`, `setDetails()`, and `displayDetails()` method.
-- Utilized arrays of objects in `Main.java` to manage and display multiple students and courses.
-- Introduced basic usage of `this` keyword...
+## Part-05: Inheritance Hierarchy (Students, Teachers & Staff)
 
+In this part of the project, we implemented an **Object-Oriented inheritance structure** using a `Person` base class and derived classes `Student`, `Teacher`, and `Staff`.
 
-## Part 3: Constructor Initialization & Auto-ID Generation
-- Implemented parameterized constructors in `Student` and `Course` classes for object initialization.
-- Utilized `private static` member variables for automatic and unique ID generation.
-- Demonstrated the use of the `this` keyword to distinguish instance variables from constructor parameters.
-- Changed `Course`'s `courseId` to `int` for simpler auto-generation and updated its display.
-- Updated `Main.java` to use constructors and show ID progression.
+### Features
+- `Person`  
+  - Auto-generated unique ID for each object  
+  - Common fields: `id`, `name`  
+  - Method: `displayDetails()`  
 
-### How to Run (ensure this is up-to-date)
-1. Navigate to the project root directory.
-2. Compile: `javac src/com/school/Student.java src/com/school/Course.java src/com/school/Main.java` (or `javac src/com/school/*.java`)
-3. Run: `java -cp src com.school.Main`
+- `Student` (extends `Person`)  
+  - Field: `gradeLevel`  
+  - Overrides `displayDetails()` to include grade level and role  
+
+- `Teacher` (extends `Person`)  
+  - Field: `subjectTaught`  
+  - Overrides `displayDetails()` to include subject taught and role  
+
+- `Staff` (extends `Person`)  
+  - Field: `role`  
+  - Overrides `displayDetails()` to include staff role and position  
+
+### Sample Code (Main.java)
+```java
+public class Main {
+    public static void main(String[] args) {
+        Student student = new Student("Alice", "10th Grade");
+        Teacher teacher = new Teacher("Mr. Smith", "Mathematics");
+        Staff staff = new Staff("John", "Librarian");
+
+        student.displayDetails();
+        System.out.println();
+        teacher.displayDetails();
+        System.out.println();
+        staff.displayDetails();
+        System.out.println();
+
+        // Example usage in AttendanceRecord
+        System.out.println("Attendance marked for Student ID: " + student.getId());
+    }
+}
